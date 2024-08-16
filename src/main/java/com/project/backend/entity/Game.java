@@ -21,7 +21,7 @@ public class Game {
     private Long id;
     @Column(name = "name", columnDefinition = "nvarchar(255)")
     private String name;
-    @Column(name = "description_game", columnDefinition = "nvarchar(max)")
+    @Column(name = "description_game", columnDefinition = "nvarchar(255)")
     private String description;
     @Column(name = "price")
     private Double priceGame;
@@ -31,7 +31,7 @@ public class Game {
     private LocalDate releaseDate;
     @Column(name = "version")
     private String version;
-    @ManyToOne @JoinColumn(name = "gameTypeId")
+    @ManyToOne @JoinColumn(name = "gameType")
     private GameType gameType;
     @JsonIgnore
     @OneToMany(mappedBy = "game")
