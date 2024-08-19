@@ -122,6 +122,7 @@ VALUES
 -- Bảng Rank type --
 insert into ranktypes (name, price) values ('Bronze', 10000), ('Silver', 50000), ('Gold', 100000);
 
+insert into role (name) values ('ADMIN'), ('STAFF'),('USER')
 
 
 
