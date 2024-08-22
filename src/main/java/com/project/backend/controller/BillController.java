@@ -111,7 +111,7 @@ public class BillController {
             Color whiteColor = new DeviceRgb(255, 255, 255);
 
             // Header của bảng
-            for (String header : new String[]{"Game", "Unit Sold", "Taxes", "Total"}) {
+            for (String header : new String[]{"Game", "Unit Sold", "Coupon", "Total"}) {
                 Cell cell = new Cell()
                     .add(new Paragraph(header)
                     .setBold()
@@ -128,7 +128,6 @@ public class BillController {
             table.addCell(new Cell().add(new Paragraph("313.000đ").setFontSize(12)).setBorder(null));
             table.addCell(new Cell().add(new Paragraph("15%").setFontSize(12)).setBorder(null));
             table.addCell(new Cell().add(new Paragraph("266.050đ").setFontSize(12)).setBorder(null));
-
 
             document.add(table);
 
