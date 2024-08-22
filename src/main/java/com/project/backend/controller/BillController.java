@@ -6,13 +6,12 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.itextpdf.io.image.ImageDataFactory;
-import com.itextpdf.kernel.colors.Color;
-import com.itextpdf.kernel.colors.DeviceRgb;
+import com.itextpdf.kernel.color.*;
 import com.itextpdf.kernel.geom.PageSize;
 import com.itextpdf.kernel.pdf.PdfDocument;
 import com.itextpdf.kernel.pdf.PdfWriter;
 import com.itextpdf.layout.Document;
-import com.itextpdf.layout.borders.Border;
+import com.itextpdf.layout.border.*;
 import com.itextpdf.layout.element.Cell;
 import com.itextpdf.layout.element.Image;
 import com.itextpdf.layout.element.LineSeparator;
@@ -22,6 +21,7 @@ import com.itextpdf.layout.property.TextAlignment;
 import com.itextpdf.layout.property.UnitValue;
 
 import java.io.IOException;
+import java.time.LocalDate;
 
 @RestController
 public class BillController {
@@ -53,17 +53,18 @@ public class BillController {
             document.add(invoiceTitle);
 
             // Thông tin hóa đơn
-            Table infoTable = new Table(UnitValue.createPercentArray(new float[]{1, 1}));
+            float[] columnWidths = {1, 1};
+            Table infoTable = new Table(columnWidths);
             infoTable.setWidth(UnitValue.createPercentValue(100));
 
             Cell cell1 = new Cell();
-            cell1.add(new Paragraph("Invoice Number\nCATER-2023-001")
+            cell1.add(new Paragraph("Invoice Number\n #00000" + orderId)
                     .setFontSize(12)
                     .setFontColor(grayColor));
             cell1.setBorder(Border.NO_BORDER);
 
             Cell cell2 = new Cell();
-            cell2.add(new Paragraph("Date\nSeptember 7, 2028")
+            cell2.add(new Paragraph("Date\n" + LocalDate.now())
                     .setFontSize(12)
                     .setFontColor(grayColor));
             cell2.setBorder(Border.NO_BORDER);
@@ -77,23 +78,24 @@ public class BillController {
 //            document.add(new LineSeparator());
 
             // Chi tiết hóa đơn (Bill To và Royalty Recipient)
-            Table detailTable = new Table(UnitValue.createPercentArray(new float[]{1, 1}));
+            float[] columnDetailWidths = {1, 1};
+            Table detailTable = new Table(columnDetailWidths);
             detailTable.setWidth(UnitValue.createPercentValue(100));
 
             Cell billToCell = new Cell();
             billToCell.add(new Paragraph("Bill To")
                     .setBold()
                     .setFontSize(14));
-            billToCell.add(new Paragraph("XYZ Gaming Studios\n505-644-5504\nxyzgaming@email.com\n3191 Florence Street Athens, TX 75751")
+            billToCell.add(new Paragraph("Bee Gaming Studios\n505-644-5504\nhphat1078@email.com\n214/2 Bui Dinh Tuy Ward 12 Binh Thanh District Ho Chi Minh city")
                     .setFontSize(12)
                     .setFontColor(grayColor));
             billToCell.setBorder(Border.NO_BORDER);
 
             Cell royaltyCell = new Cell();
-            royaltyCell.add(new Paragraph("Royalty Recipient")
+            royaltyCell.add(new Paragraph("Customer")
                     .setBold()
                     .setFontSize(14));
-            royaltyCell.add(new Paragraph("GameSoundtracks LLC\n725-320-2997\nxyzgaming@email.com\n3877 Clinton Street Portland, OR 97204")
+            royaltyCell.add(new Paragraph("Huynh Tan Phat\n0901631519\nmoeietls80@email.com\n16A/B4 Ha Thi Khiem Ward 10 District 12 Ho Chi Minh city")
                     .setFontSize(12)
                     .setFontColor(grayColor));
             royaltyCell.setBorder(Border.NO_BORDER);
@@ -102,47 +104,35 @@ public class BillController {
             detailTable.addCell(royaltyCell);
             document.add(detailTable);
 
-            // Thêm bảng chi tiết thanh toán
-            float[] columnWidths = {2, 1, 1, 1};
-            Table table = new Table(columnWidths);
+            float[] columnTWidths = {2, 1, 1, 1};
+            Table table = new Table(columnTWidths);
             table.setWidth(UnitValue.createPercentValue(100));
             table.setMarginTop(10);
             Color whiteColor = new DeviceRgb(255, 255, 255);
+
             // Header của bảng
-            table.addHeaderCell(new Cell().add(new Paragraph("Royalty Details")
+            for (String header : new String[]{"Game", "Unit Sold", "Taxes", "Total"}) {
+                Cell cell = new Cell()
+                    .add(new Paragraph(header)
                     .setBold()
                     .setBackgroundColor(purpleColor)
-                    .setFontColor(whiteColor)));
-            table.addHeaderCell(new Cell().add(new Paragraph("Unit Sold")
-                    .setBold()
-                    .setBackgroundColor(purpleColor)
-                    .setFontColor(whiteColor)));
-            table.addHeaderCell(new Cell().add(new Paragraph("Royalty Rate")
-                    .setBold()
-                    .setBackgroundColor(purpleColor)
-                    .setFontColor(whiteColor)));
-            table.addHeaderCell(new Cell().add(new Paragraph("Total")
-                    .setBold()
-                    .setBackgroundColor(purpleColor)
-                    .setFontColor(whiteColor)));
+                    .setFontColor(whiteColor))
+                    .setBorder(null) // No border
+                    .setMarginLeft(-10)
+                    .setPadding(5); // Adjust padding as needed
+                table.addHeaderCell(cell);
+            }
 
             // Dữ liệu của bảng
-            table.addCell(new Cell().add(new Paragraph("Digital Downloads").setFontSize(12)));
-            table.addCell(new Cell().add(new Paragraph("50,000").setFontSize(12)));
-            table.addCell(new Cell().add(new Paragraph("10%").setFontSize(12)));
-            table.addCell(new Cell().add(new Paragraph("$5,000.00").setFontSize(12)));
+            table.addCell(new Cell().add(new Paragraph("World of Goo 2").setFontSize(12)).setBorder(null));
+            table.addCell(new Cell().add(new Paragraph("313.000đ").setFontSize(12)).setBorder(null));
+            table.addCell(new Cell().add(new Paragraph("15%").setFontSize(12)).setBorder(null));
+            table.addCell(new Cell().add(new Paragraph("266.050đ").setFontSize(12)).setBorder(null));
 
-            table.addCell(new Cell().add(new Paragraph("Physical Copies").setFontSize(12)));
-            table.addCell(new Cell().add(new Paragraph("20,000").setFontSize(12)));
-            table.addCell(new Cell().add(new Paragraph("8%").setFontSize(12)));
-            table.addCell(new Cell().add(new Paragraph("$1,600.00").setFontSize(12)));
-
-            table.addCell(new Cell().add(new Paragraph("In-Game Purchases").setFontSize(12)));
-            table.addCell(new Cell().add(new Paragraph("100,000").setFontSize(12)));
-            table.addCell(new Cell().add(new Paragraph("5%").setFontSize(12)));
-            table.addCell(new Cell().add(new Paragraph("$5,000.00").setFontSize(12)));
 
             document.add(table);
+
+
 
             // Thêm phần "Thanks for business"
             Paragraph thanksParagraph = new Paragraph("Thanks for business!")
@@ -150,7 +140,11 @@ public class BillController {
                     .setBold()
                     .setTextAlignment(TextAlignment.RIGHT);
             document.add(thanksParagraph);
-
+            Image qr = new Image(ImageDataFactory.create("src/main/resources/qr.png"));
+            qr.setWidth(80);
+            qr.setHeight(80);
+            qr.setTextAlignment(TextAlignment.RIGHT);
+            document.add(qr);
             // Đóng tài liệu
             document.close();
         } catch (IOException e) {
