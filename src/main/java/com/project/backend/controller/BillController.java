@@ -26,10 +26,9 @@ public class BillController {
 
 	        document.open();
 
-	        // Sử dụng phông chữ Arial Unicode MS để hỗ trợ tốt hơn cho các ký tự đặc biệt và tiếng Việt
-	        BaseFont baseFont = BaseFont.createFont("fonts/ArialUnicodeMS.ttf", BaseFont.IDENTITY_H, BaseFont.EMBEDDED);
-	        Font titleFont = new Font(baseFont, 20, Font.BOLD);
-	        Font infoFont = new Font(baseFont, 12, Font.NORMAL);
+	        // Sử dụng font mặc định
+	        Font titleFont = FontFactory.getFont(FontFactory.HELVETICA_BOLD, 20);
+	        Font infoFont = FontFactory.getFont(FontFactory.HELVETICA, 12);
 
 	        // Thêm tiêu đề hoá đơn bằng tiếng Anh
 	        Paragraph title = new Paragraph("INVOICE", titleFont);
@@ -55,7 +54,7 @@ public class BillController {
 	        // Định nghĩa các cột của bảng
 	        String[] headers = {"Item", "Quantity", "Unit Price", "Total"};
 	        for (String header : headers) {
-	            PdfPCell cell = new PdfPCell(new Phrase(header, new Font(baseFont, 12, Font.BOLD)));
+	            PdfPCell cell = new PdfPCell(new Phrase(header, FontFactory.getFont(FontFactory.HELVETICA_BOLD, 12)));
 	            cell.setHorizontalAlignment(Element.ALIGN_CENTER);
 	            table.addCell(cell);
 	        }
@@ -72,7 +71,7 @@ public class BillController {
 	        table.addCell(new Phrase("150,000 VND", infoFont));
 
 	        // Thêm tổng cộng
-	        PdfPCell totalCell = new PdfPCell(new Phrase("Total", new Font(baseFont, 12, Font.BOLD)));
+	        PdfPCell totalCell = new PdfPCell(new Phrase("Total", FontFactory.getFont(FontFactory.HELVETICA_BOLD, 12)));
 	        totalCell.setColspan(3);
 	        totalCell.setHorizontalAlignment(Element.ALIGN_RIGHT);
 	        table.addCell(totalCell);
@@ -89,4 +88,5 @@ public class BillController {
 	        // Xử lý lỗi nếu cần thiết
 	    }
 	}
+
 }
