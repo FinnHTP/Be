@@ -1,4 +1,4 @@
-﻿-- Bảng Game type --
+-- Bảng Game type --
 INSERT INTO gametypes VALUES ('Action Game');
 INSERT INTO gametypes VALUES ('Adventure Game');
 INSERT INTO gametypes VALUES ('Shooter Game');
