@@ -27,6 +27,8 @@ public class User{
     private String lastName;
     @Column(name = "sdt")
     private String sdt;
+    @Column(name = "address")
+    private String address;
     @Lob
     @Column(name = "avatar")
     private byte[] avatar;

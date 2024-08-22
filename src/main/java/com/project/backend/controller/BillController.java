@@ -1,8 +1,12 @@
 package com.project.backend.controller;
 
 import jakarta.servlet.http.HttpServletResponse;
+
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.itextpdf.io.image.ImageDataFactory;
@@ -19,20 +23,49 @@ import com.itextpdf.layout.element.Paragraph;
 import com.itextpdf.layout.element.Table;
 import com.itextpdf.layout.property.TextAlignment;
 import com.itextpdf.layout.property.UnitValue;
+import com.project.backend.controller.OrderController.CreateOrderRequest;
+import com.project.backend.entity.Account;
+import com.project.backend.entity.Game;
+import com.project.backend.entity.Order;
+import com.project.backend.entity.OrderDetail;
+import com.project.backend.entity.User;
+import com.project.backend.mapper.AccountMapper;
+import com.project.backend.mapper.GameMapper;
+import com.project.backend.mapper.OrderDetailMapper;
+import com.project.backend.mapper.OrderMapper;
+import com.project.backend.mapper.UserMapper;
+import com.project.backend.service.AccountService;
+import com.project.backend.service.GameService;
+import com.project.backend.service.KeycodeService;
+import com.project.backend.service.OrderDetailService;
+import com.project.backend.service.OrderService;
+import com.project.backend.service.UserService;
 
 import java.io.IOException;
 import java.time.LocalDate;
 
 @RestController
 public class BillController {
-    @GetMapping("/api/bill/{orderId}")
-    public void generateInvoice(@PathVariable Long orderId, HttpServletResponse response) {
+	@Autowired
+    private OrderService service;
+	@Autowired
+	private UserService userService;
+	@Autowired
+	private GameService gameService;
+	@Autowired
+	private AccountService accountService;
+    @PostMapping("/api/bill")
+    public void generateInvoice(@RequestBody CreateOrderRequest request, HttpServletResponse response) {
         try {
             // Tạo file PDF
             PdfWriter writer = new PdfWriter(response.getOutputStream());
             PdfDocument pdfDoc = new PdfDocument(writer);
             Document document = new Document(pdfDoc, PageSize.A4);
             document.setMargins(20, 20, 20, 20);
+            User user = UserMapper.MapToUser(userService.getUserById(request.getAccountId()));
+            Account account = AccountMapper.MapToAccount(accountService.getAccountById(request.getAccountId()));
+            Game game = GameMapper.mapToGame(gameService.getGameById(request.getGameId()));
+            Integer coupon = (game.getCoupon() != null) ? game.getCoupon().getValue() : 0;
 
             // Tạo màu sắc cho hóa đơn
             Color purpleColor = new DeviceRgb(75, 0, 130);
@@ -58,7 +91,7 @@ public class BillController {
             infoTable.setWidth(UnitValue.createPercentValue(100));
 
             Cell cell1 = new Cell();
-            cell1.add(new Paragraph("Invoice Number\n #00000" + orderId)
+            cell1.add(new Paragraph("Invoice Number\n #00000" + 1)
                     .setFontSize(12)
                     .setFontColor(grayColor));
             cell1.setBorder(Border.NO_BORDER);
@@ -86,7 +119,7 @@ public class BillController {
             billToCell.add(new Paragraph("Bill To")
                     .setBold()
                     .setFontSize(14));
-            billToCell.add(new Paragraph("Bee Gaming Studios\n505-644-5504\nhphat1078@email.com\n214/2 Bui Dinh Tuy Ward 12 Binh Thanh District Ho Chi Minh city")
+            billToCell.add(new Paragraph("Bee Gaming Studios\n505-644-5504\nhphat1078@email.com\n16A/B4 Ha Thi Khiem Ward 10 District 12 Ho Chi Minh city")
                     .setFontSize(12)
                     .setFontColor(grayColor));
             billToCell.setBorder(Border.NO_BORDER);
@@ -95,7 +128,7 @@ public class BillController {
             royaltyCell.add(new Paragraph("Customer")
                     .setBold()
                     .setFontSize(14));
-            royaltyCell.add(new Paragraph("Huynh Tan Phat\n0901631519\nmoeietls80@email.com\n16A/B4 Ha Thi Khiem Ward 10 District 12 Ho Chi Minh city")
+            royaltyCell.add(new Paragraph(user.getFirstName() + " " + user.getLastName() + "\n " + user.getSdt() + "\n"+ account.getEmail() +"\n" + user.getAddress())
                     .setFontSize(12)
                     .setFontColor(grayColor));
             royaltyCell.setBorder(Border.NO_BORDER);
@@ -124,10 +157,11 @@ public class BillController {
             }
 
             // Dữ liệu của bảng
-            table.addCell(new Cell().add(new Paragraph("World of Goo 2").setFontSize(12)).setBorder(null));
-            table.addCell(new Cell().add(new Paragraph("313.000đ").setFontSize(12)).setBorder(null));
-            table.addCell(new Cell().add(new Paragraph("15%").setFontSize(12)).setBorder(null));
-            table.addCell(new Cell().add(new Paragraph("266.050đ").setFontSize(12)).setBorder(null));
+            Double totalPrice = game.getPriceGame() * (100 - coupon)/100;
+            table.addCell(new Cell().add(new Paragraph(game.getName()).setFontSize(12)).setBorder(null));
+            table.addCell(new Cell().add(new Paragraph(game.getPriceGame()+"VND").setFontSize(12)).setBorder(null));
+            table.addCell(new Cell().add(new Paragraph(coupon +"%").setFontSize(12)).setBorder(null));
+            table.addCell(new Cell().add(new Paragraph(totalPrice+"VND").setFontSize(12)).setBorder(null));
 
             document.add(table);
 

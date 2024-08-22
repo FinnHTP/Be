@@ -13,6 +13,7 @@ public class UserMapper {
         userDto.setSdt(user.getSdt());
         userDto.setAvatar(user.getAvatar());
         userDto.setAccount(user.getAccount());
+        userDto.setAddress(user.getAddress());
         return userDto;
     }
 
@@ -24,6 +25,7 @@ public class UserMapper {
         user.setSdt(userDto.getSdt());
         user.setAvatar(userDto.getAvatar());
         user.setAccount(userDto.getAccount());
+        user.setAddress(userDto.getAddress());
         return user;
     }
 }

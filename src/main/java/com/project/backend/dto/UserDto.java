@@ -13,6 +13,7 @@ public class UserDto {
     private String firstname;
     private String lastname;
     private String sdt;
+    private String address;
     private byte[] avatar;
     private Account account;
 }
