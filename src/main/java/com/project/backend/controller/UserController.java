@@ -52,7 +52,6 @@ public class UserController {
     }
     
     
-    @CrossOrigin(origins = "http://localhost:3000")
     @PostMapping ("/{id}/avatar")
     public ResponseEntity<String> uploadAvatar (@PathVariable Long id,  @RequestParam ("avatar") MultipartFile file) {
         try
@@ -70,7 +69,6 @@ public class UserController {
     
     
     
-    @CrossOrigin(origins = "http://localhost:3000")
     @GetMapping ("/{id}/avatar")
     public ResponseEntity<byte[]> getAvatar (@PathVariable Long id) {
         try
