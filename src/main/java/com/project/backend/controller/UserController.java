@@ -51,22 +51,23 @@ public class UserController {
         return ResponseEntity.ok("User deleted successfully");
     }
     
-    
-    @PostMapping ("/{id}/avatar")
-    public ResponseEntity<String> uploadAvatar (@PathVariable Long id,  @RequestParam ("avatar") MultipartFile file) {
-        try
-        {
-            userService.uploadAvatar(id , file);
+    @PostMapping("/{id}/avatar")
+    public ResponseEntity<String> uploadAvatar(@PathVariable("id") Long id, @RequestParam("avatar") MultipartFile file) {
+        try {
+            if (file.isEmpty()) {
+                return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("No file selected");
+            }
+            userService.uploadAvatar(id, file);
             return ResponseEntity.ok("Avatar uploaded successfully");
-        } catch (IOException e)
-        {
+        } catch (IOException e) {
+            e.printStackTrace(); 
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("Failed to upload avatar");
-        } catch (RuntimeException e)
-        {
+        } catch (RuntimeException e) {
+            e.printStackTrace();
             return ResponseEntity.status(HttpStatus.NOT_FOUND).body("User not found");
         }
     }
-    
+
     
     
     @GetMapping ("/{id}/avatar")

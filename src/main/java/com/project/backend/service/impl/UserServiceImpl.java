@@ -8,6 +8,8 @@ import com.project.backend.mapper.UserMapper;
 import com.project.backend.repository.UserRepository;
 import com.project.backend.service.UserService;
 import lombok.AllArgsConstructor;
+
+import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -66,22 +68,32 @@ public class UserServiceImpl implements UserService {
     
     
     @Override
-    public void uploadAvatar (Long id, MultipartFile file) throws IOException {
+    public void uploadAvatar(Long id, MultipartFile file) throws IOException {
+        // Kiểm tra kích thước file, ví dụ giới hạn 5MB
+        if (file.getSize() > 5 * 1024 * 1024) {
+            throw new IOException("File size exceeds the limit of 5MB");
+        }
         Optional<User> optionalUser = userRepository.findById(id);
-        if (optionalUser.isPresent())
-        {
+        if (optionalUser.isPresent()) {
             User user = optionalUser.get();
             user.setAvatar(file.getBytes());
-            userRepository.save(user);
-        } else
-        {
+            try {
+                userRepository.save(user);
+            } catch (DataIntegrityViolationException e) {
+                throw new IOException("Failed to save avatar due to data integrity issues", e);
+            } catch (Exception e) {
+                throw new IOException("Unexpected error occurred while saving avatar", e);
+            }
+        } else {
             throw new RuntimeException("User not found");
         }
     }
 
+
     @Override
     public byte[] getAvatar (Long id) {
         Optional<User> optionalUser = userRepository.findById(id);
+        System.out.println("This is User: " + optionalUser.get().getFirstName());
         if (optionalUser.isPresent() && optionalUser.get().getAvatar() != null)
         {
             return optionalUser.get().getAvatar();

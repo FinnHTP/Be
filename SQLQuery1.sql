@@ -773,27 +773,25 @@ insert into role (name) values ('ADMIN') , ('STAFF') , ('USER')
 
 
 
--- Grand Theft Auto V - Minimum
 INSERT INTO gameSystemRequirements (card, memory, os, processor, storage, game_id)
 VALUES
 (
-  'NVIDIA 9800 GT 1GB / AMD HD 4870 1GB (DX 10, 10.1, 11)',
-  '4 GB RAM',
-  'Windows 8.1 64 Bit, Windows 8 64 Bit, Windows 7 64 Bit Service Pack 1, Windows Vista 64 Bit Service Pack 2* (*NVIDIA video card recommended if running Vista OS)',
-  'Intel Core 2 Quad CPU Q6600 @ 2.40GHz (4 CPUs) / AMD Phenom 9850 Quad-Core Processor (4 CPUs) @ 2.5GHz',
-  '65 GB available space',
+  'NVIDIA GeForce 8800 GTS / ATI Radeon HD 3850',
+  '2 GB',
+  'Windows XP / Vista / 7 / 8 / 10',
+  'Intel Core 2 Duo 1.6 GHz or equivalent',
+  '512 MB available space',
   1
 );
 
--- Grand Theft Auto V - Recommended
 INSERT INTO gameSystemRequirements (card, memory, os, processor, storage, game_id)
 VALUES
 (
-  'NVIDIA GTX 660 2GB / AMD HD7870 2GB',
-  '8 GB RAM',
-  'Windows 8.1 64 Bit, Windows 8 64 Bit, Windows 7 64 Bit Service Pack 1',
-  'Intel Core i5 3470 @ 3.2GHz (4 CPUs) / AMD X8 FX-8350 @ 4GHz (8 CPUs)',
-  '65 GB available space',
+  'NVIDIA GeForce GTX 460 / ATI Radeon HD 6850',
+  '4 GB',
+  'Windows 7 / 8 / 10 (64-bit versions)',
+  'Intel Core i3 2.0 GHz or better',
+  '1 GB available space',
   1
 );
 

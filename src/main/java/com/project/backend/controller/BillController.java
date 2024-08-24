@@ -60,7 +60,7 @@ public class BillController {
             // Tạo file PDF
             PdfWriter writer = new PdfWriter(response.getOutputStream());
             PdfDocument pdfDoc = new PdfDocument(writer);
-            Document document = new Document(pdfDoc, PageSize.A4);
+            Document document = new Document(pdfDoc, PageSize.A5);
             document.setMargins(20, 20, 20, 20);
             User user = UserMapper.MapToUser(userService.getUserById(request.getAccountId()));
             Account account = AccountMapper.MapToAccount(accountService.getAccountById(request.getAccountId()));
@@ -159,9 +159,9 @@ public class BillController {
             // Dữ liệu của bảng
             Double totalPrice = game.getPriceGame() * (100 - coupon)/100;
             table.addCell(new Cell().add(new Paragraph(game.getName()).setFontSize(12)).setBorder(null));
-            table.addCell(new Cell().add(new Paragraph(game.getPriceGame()+"VND").setFontSize(12)).setBorder(null));
+            table.addCell(new Cell().add(new Paragraph(game.getPriceGame()+"").setFontSize(12)).setBorder(null));
             table.addCell(new Cell().add(new Paragraph(coupon +"%").setFontSize(12)).setBorder(null));
-            table.addCell(new Cell().add(new Paragraph(totalPrice+"VND").setFontSize(12)).setBorder(null));
+            table.addCell(new Cell().add(new Paragraph(totalPrice+"").setFontSize(12)).setBorder(null));
 
             document.add(table);
 
@@ -171,12 +171,13 @@ public class BillController {
             Paragraph thanksParagraph = new Paragraph("Thanks for business!")
                     .setFontSize(14)
                     .setBold()
-                    .setTextAlignment(TextAlignment.RIGHT);
+                    .setMarginTop(20)
+                    .setTextAlignment(TextAlignment.CENTER);
             document.add(thanksParagraph);
             Image qr = new Image(ImageDataFactory.create("src/main/resources/qr.png"));
             qr.setWidth(80);
             qr.setHeight(80);
-            qr.setTextAlignment(TextAlignment.RIGHT);
+            qr.setMarginLeft(150);
             document.add(qr);
             // Đóng tài liệu
             document.close();
