@@ -8,7 +8,6 @@ import com.project.backend.entity.Game;
 import com.project.backend.entity.GameType;
 import com.project.backend.mapper.GameMapper;
 import com.project.backend.mapper.GameTypeMapper;
-import com.project.backend.repository.CouponRepository;
 import com.project.backend.service.GameService;
 import com.project.backend.service.GameTypeService;
 
@@ -46,18 +45,18 @@ private GameTypeService gameTypeService;
 //        return new ResponseEntity<>(savedGame, HttpStatus.CREATED);
 //    }
     
-@Autowired
-private CouponRepository couponRepository;
+//@Autowired
+//private CouponRepository couponRepository;
 
-@CrossOrigin(origins = "http://localhost:3000")
-@GetMapping("/coupons")
-public ResponseEntity<List<CouponDto>> getCoupons() {
-    List<Coupon> coupons = couponRepository.findAll();
-    List<CouponDto> couponDtos = coupons.stream()
-                                         .map(coupon -> new CouponDto(coupon.getId(), coupon.getCoupon(), coupon.getValue()))
-                                         .collect(Collectors.toList());
-    return ResponseEntity.ok(couponDtos);
-}
+//@CrossOrigin(origins = "http://localhost:3000")
+//@GetMapping("/coupons")
+//public ResponseEntity<List<CouponDto>> getCoupons() {
+//    List<Coupon> coupons = couponRepository.findAll();
+//    List<CouponDto> couponDtos = coupons.stream()
+//                                         .map(coupon -> new CouponDto(coupon.getId(), coupon.getCoupon(), coupon.getValue()))
+//                                         .collect(Collectors.toList());
+//    return ResponseEntity.ok(couponDtos);
+//}
 
 @CrossOrigin(origins = "http://localhost:3000")
 @PostMapping("")
@@ -85,12 +84,8 @@ public ResponseEntity<GameDto> createGame(
     GameType gameType = GameTypeMapper.mapToGameType(gameTypeDto);
     gameDto.setGameType(gameType);
 
-   
-    if (couponId != null) {
-        Coupon coupon = couponRepository.findById(couponId)
-                .orElseThrow(() -> new IllegalArgumentException("Invalid coupon ID"));
+    Coupon coupon = new Coupon();
         gameDto.setCoupon(coupon);
-    }
 
     // Xử lý ảnh nếu có
     if (image != null && !image.isEmpty()) {
@@ -190,8 +185,7 @@ public ResponseEntity<GameDto> createGame(
             existingGame.setVersion(version);
 
             if (couponId != null) {
-                Coupon coupon = couponRepository.findById(couponId)
-                        .orElseThrow(() -> new IllegalArgumentException("Invalid coupon ID"));
+              Coupon coupon = new Coupon();
                 existingGame.setCoupon(coupon);
             }
             

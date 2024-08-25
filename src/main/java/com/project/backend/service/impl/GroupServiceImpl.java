@@ -108,7 +108,6 @@ public void AccountJoinGroup(JoinGroupDto joinGroupDto) {
         System.out.println("Existing group: " + group.getName());
         if (group.getId().equals(groupById.getId())) {
             groupExists = true;
-            
             break;
         }
     }
@@ -193,7 +192,6 @@ public List<Group> findByName(String name) {
     List<Group> ls = grouprepo.findByName(name);
     return ls;
 }
-
 
 @Override
 public void uploadAvatar (Long id, MultipartFile file) throws IOException {
