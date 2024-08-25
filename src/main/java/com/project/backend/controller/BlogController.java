@@ -52,8 +52,9 @@ public class BlogController {
 	 @GetMapping("/commentblog/{blogId}")
 	 public ResponseEntity<List<CommentBlogDto>> getCommentsByBlog(@PathVariable Long blogId) 
 	 {
-	     List<CommentBlogDto> comments = commentService.findCommentsByBlogId(blogId);
-	     return ResponseEntity.ok(comments);
+//	     List<CommentBlogDto> comments = commentService.findCommentsByBlogId(blogId);
+//	     return ResponseEntity.ok(comments);
+		 return null;
 	 }
 
 	 

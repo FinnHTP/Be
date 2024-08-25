@@ -16,4 +16,11 @@ public interface BlogRepository extends JpaRepository<Blog,Long> {
    
    @Query("select o from Blog o where o.game.id = ?1")
    List<Blog> findBlogByGame(Long accountId);
+   
+ 
+
+   @Query("SELECT b FROM Blog b JOIN b.group g WHERE g.status = true")
+   List<Blog> findBlogsByGroupStatus();
+
+
 }
