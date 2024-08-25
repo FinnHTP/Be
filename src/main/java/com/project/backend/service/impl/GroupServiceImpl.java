@@ -87,6 +87,12 @@ public GroupDto creategroup(GroupDto Dto) {
 }
 
 
+@Override
+public int countNewBlogsToday(Long groupId) {
+    return grouprepo.countNewBlogsTodayByGroupId(groupId);
+}
+
+
 
 
 @Override
@@ -231,14 +237,14 @@ public void saveGroupImage(Long groupId, MultipartFile image) throws IOException
 
 
 
-//@Override
-//public List<Long> findAccountIdsByGroupId(Long groupId) {
-//	
-//	 return grouprepo.findAccountIdsByGroupId(groupId);
-//}
-//
-//
-//
+@Override
+public List<Long> findAccountIdsByGroupId(Long groupId) {
+	
+	 return grouprepo.findAccountIdsByGroupId(groupId);
+}
+
+
+
 //@Override
 //public List<Long> findAccountIdsByGroupName(String groupName) {
 //    return grouprepo.findAccountIdsByGroupName(groupName);

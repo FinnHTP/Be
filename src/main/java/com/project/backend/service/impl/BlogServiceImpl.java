@@ -76,6 +76,13 @@ public class BlogServiceImpl implements BlogService{
 	public List<Blog> findBlogByGame(Long gameId) {
 		return blogRepository.findBlogByGame(gameId);
 	}
+
+	@Override
+	 public List<BlogDto> findBlogsByGroupStatus() {
+        List<Blog> blogs = blogRepository.findBlogsByGroupStatus();
+        return blogs.stream().map(BlogMapper::mapToDTO).collect(Collectors.toList());
+    }
+	
 	
 	
 	
