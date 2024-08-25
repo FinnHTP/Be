@@ -14,6 +14,6 @@ public interface AccountRepository extends JpaRepository<Account, Long> {
     Optional<Account> findByUsername(@Param("username") String username);
 
 	@Query(value = "select * from accounts where accounts.email like :email", nativeQuery = true)
-    Account findByEmail (@Param("emai") String email);
+    Account findByEmail (@Param("email") String email);
 }
 

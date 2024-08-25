@@ -52,6 +52,9 @@ public class Game {
     @JsonIgnore
     @OneToMany(mappedBy = "game")
     private List<Rating> ratings;
+    @JsonIgnore
+    @OneToMany(mappedBy = "game")
+    private List<Favorite> favorites;
 
 
 

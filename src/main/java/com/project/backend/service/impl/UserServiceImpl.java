@@ -56,6 +56,7 @@ public class UserServiceImpl implements UserService {
         user.setFirstName(userDto.getFirstname());
         user.setLastName(userDto.getLastname());
         user.setSdt(userDto.getSdt());
+        user.setAddress(userDto.getAddress());
         User updatedUser = userRepository.save(user);
         return UserMapper.MapToUserDto(updatedUser);
     }
