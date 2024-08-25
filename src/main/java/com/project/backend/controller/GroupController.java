@@ -80,6 +80,12 @@ private UserService userservice;
 //    return new ResponseEntity<>(savedGroup, HttpStatus.CREATED);
 //}
 
+@GetMapping("/{groupId}/blogday")
+public ResponseEntity<Integer> getNewBlogsToday(@PathVariable Long groupId) {
+    int count = groupservice.countNewBlogsToday(groupId);
+    return ResponseEntity.ok(count);
+}
+
 
 @PostMapping("")
 public ResponseEntity<GroupDto> createGroup(
@@ -244,15 +250,15 @@ public ResponseEntity<List<Group>> findByName(@RequestParam String name) {
 //}
 
 
-//@GetMapping("{id}/details")
-//public Map<String, Object> getGroupDetails(@PathVariable Long id) {
-//    List<Long> memberIds = groupservice.findAccountIdsByGroupId(id);
-//    Map<String, Object> response = new HashMap<>();
-//    response.put("groupId", id);
-//    response.put("totalMembers", memberIds.size());
-//    response.put("memberIds", memberIds);
-//    return response;
-//}
+@GetMapping("{id}/details")
+public Map<String, Object> getGroupDetails(@PathVariable Long id) {
+    List<Long> memberIds = groupservice.findAccountIdsByGroupId(id);
+    Map<String, Object> response = new HashMap<>();
+    response.put("groupId", id);
+    response.put("totalMembers", memberIds.size());
+    response.put("memberIds", memberIds);
+    return response;
+}
 
 //@GetMapping("/details")
 //public Map<String, Object> getGroupDetails(@RequestParam String groupName) {
