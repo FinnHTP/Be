@@ -13,7 +13,7 @@ public class PaypalConfig {
     @Value("${paypal.client-secret}")
     private String clientSecret;
     @Value("${paypal.mode}")
-    private String mode;
+    private String mode;	
 
     @Bean
     public APIContext apiContext() {

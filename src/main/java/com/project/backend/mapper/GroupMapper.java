@@ -10,7 +10,6 @@ public class GroupMapper {
 	        Group gr = new Group();
 	        gr.setId(GroupDto.getId());
 	        gr.setName(GroupDto.getName());
-	        gr.setImage(GroupDto.getImage());
 	        gr.setStatus(GroupDto.isStatus());
 	        gr.setCreateDate(GroupDto.getCreateDate());
 	        return gr;
@@ -20,7 +19,6 @@ public class GroupMapper {
 	        GroupDto groupDto = new GroupDto();
 	        groupDto.setId(group.getId());
 	        groupDto.setName(group.getName());
-	        groupDto.setImage(group.getImage());
 	        groupDto.setStatus(group.isStatus());
 	        groupDto.setCreateDate(group.getCreateDate());
 	        return groupDto;

@@ -758,6 +758,577 @@ VALUES (
     2              -- Assuming the game type ID for 'Adventure Game' is 2
 );
 
+INSERT INTO games (description_game, image, name, price, release_date, status, version, game_type)
+VALUES
+    ('Embark on a thrilling space journey with strategic battles and exploration in this captivating MMORPG experience.',
+     'StarRail.jpeg',
+     'Star Rail',
+     0,  -- Free
+     '2024-09-15',
+     1,  -- Available
+     '1.0',
+     13);
+
+INSERT INTO games (description_game, image, name, price, release_date, status, version, game_type)
+VALUES
+    ('Explore a vast open world with action combat mechanics and a rich character system in this engaging RPG.',
+     'GenshinImpact.jpeg',
+     'Genshin Impact',
+     0,  -- Free
+     '2024-09-28',
+     1,  -- Available
+     '1.0',
+     14);
+
+INSERT INTO games (description_game, image, name, price, release_date, status, version, game_type)
+VALUES
+    ('Discover a mysterious world with innovative combat systems and a rich action gameplay experience in this thrilling RPG.',
+     'wutheringwaves.jpeg',
+     'Wuthering Waves',
+     0,  -- Free
+     '2024-10-01',
+     1,  -- Available
+     '1.0',
+     14);
+
+INSERT INTO games (description_game, image, name, price, release_date, status, version, game_type)
+VALUES
+    ('Explore a new adventure world with challenging quests and an engaging storyline in this game.',
+     'Fallyuy.webp',
+     'Fallyuy',
+     0,  -- Free
+     '2024-11-01',
+     1,  -- Available
+     '1.0',
+     2);
+
+INSERT INTO games (description_game, image, name, price, release_date, status, version, game_type)
+VALUES
+    ('Join the battle in a visually stunning sci-fi universe with fast-paced action and cooperative gameplay in this free-to-play shooter.',
+     'warframe.jpeg',
+     'Warframe',
+     0,  -- Free
+     '2024-12-01',
+     1,  -- Available
+     '1.0',
+     1);
+
+INSERT INTO games (description_game, image, name, price, release_date, status, version, game_type)
+VALUES
+    ('Embark on an epic journey with intense action and strategic combat in this thrilling adventure game.',
+     'Firestone.jpeg',
+     'Firestone',
+     0,  -- Free
+     '2024-11-15',
+     1,  -- Available
+     '1.0',
+     3);
+
+INSERT INTO games (description_game, image, name, price, release_date, status, version, game_type)
+VALUES
+    ('Engage in high-stakes battle royale action with intense combat and survival elements in this popular multiplayer game.',
+     'pubg.jpeg',
+     'PUBG',
+     0,  -- Free
+     '2024-12-01',
+     1,  -- Available
+     '1.0',
+     7);
+
+INSERT INTO games (description_game, image, name, price, release_date, status, version, game_type)
+VALUES
+    ('Experience an expansive universe with cooperative and competitive multiplayer modes in this action-packed FPS game.',
+     'Destiny2.jpeg',
+     'Destiny 2',
+     0,  -- Free
+     '2024-10-15',
+     1,  -- Available
+     '1.0',
+     13);
+
+INSERT INTO games (description_game, image, name, price, release_date, status, version, game_type)
+VALUES
+    ('Join the fight against massive Behemoths in this cooperative action RPG set in a vibrant, fantasy world.',
+     'Dauntless.jpeg',
+     'Dauntless',
+     0,  -- Free
+     '2024-11-15',
+     1,  -- Available
+     '1.0',
+     1);
+
+INSERT INTO games (description_game, image, name, price, release_date, status, version, game_type)
+VALUES
+    ('Build and manage your own shop, craft items, and embark on adventures in this engaging simulation game.',
+     'shoptitans.jpeg',
+     'Shop Titans',
+     0,  -- Free
+     '2024-12-01',
+     1,  -- Available
+     '1.0',
+     14);
+
+INSERT INTO games (description_game, image, name, price, release_date, status, version, game_type)
+VALUES
+    ('Dive into a dark fantasy world with complex skill trees and deep character customization in this free-to-play action RPG.',
+     'EGS_PathofExile.jpeg',
+     'Path of Exile',
+     0,  -- Free
+     '2024-10-01',
+     1,  -- Available
+     '1.0',
+     13);
+
+INSERT INTO games (description_game, image, name, price, release_date, status, version, game_type)
+VALUES
+    ('Explore dark dungeons and face terrifying enemies in this intense cooperative dungeon crawler.',
+     'dark-and-darker.jpeg',
+     'Dark and Darker',
+     0,  -- Free
+     '2024-10-10',
+     1,  -- Available
+     '1.0',
+     1);
+
+INSERT INTO games (description_game, image, name, price, release_date, status, version, game_type)
+VALUES
+    ('Race through Disney-themed tracks in this fast-paced and fun racing game featuring popular Disney characters.',
+     'DisneySpeedstorm.jpeg',
+     'Disney Speedstorm',
+     0,  -- Free
+     '2024-11-05',
+     1,  -- Available
+     '1.0',
+     2);
+
+INSERT INTO games (description_game, image, name, price, release_date, status, version, game_type)
+VALUES
+    ('Embark on epic adventures in a high-fantasy world with rich role-playing elements in this classic RPG.',
+     'Dungeons&Dragons.jpeg',
+     'Dungeons & Dragons',
+     0,  -- Free
+     '2024-12-01',
+     1,  -- Available
+     '1.0',
+     13);
+
+INSERT INTO games (description_game, image, name, price, release_date, status, version, game_type)
+VALUES
+    ('Experience fast-paced action and a deep storyline in this popular mobile action RPG from EGS.',
+     'EGS_HonkaiImpact3rd.jpeg',
+     'Honkai Impact 3rd',
+     0,  -- Free
+     '2024-09-20',
+     1,  -- Available
+     '1.0',
+     13);
+
+INSERT INTO games (description_game, image, name, price, release_date, status, version, game_type)
+VALUES
+    ('Enjoy a relaxing experience with various fishing adventures in this immersive simulation game.',
+     'fishing.jpeg',
+     'Fishing',
+     0,  -- Free
+     '2024-10-25',
+     1,  -- Available
+     '1.0',
+     14);
+
+INSERT INTO games (description_game, image, name, price, release_date, status, version, game_type)
+VALUES
+    ('Fight in an epic battle with advanced weaponry in this action-packed shooter game.',
+     'Metalstorm.jpeg',
+     'Metalstorm',
+     0,  -- Free
+     '2024-11-20',
+     1,  -- Available
+     '1.0',
+     1);
+
+INSERT INTO games (description_game, image, name, price, release_date, status, version, game_type)
+VALUES
+    ('Battle against other players in this vibrant and chaotic multiplayer brawler.',
+     'Multiversus.jpeg',
+     'Multiversus',
+     0,  -- Free
+     '2024-12-15',
+     1,  -- Available
+     '1.0',
+     2);
+
+INSERT INTO games (description_game, image, name, price, release_date, status, version, game_type)
+VALUES
+    ('Join special operations missions in this tactical shooter game with realistic combat mechanics.',
+     'operation.jpeg',
+     'Operation',
+     0,  -- Free
+     '2024-10-30',
+     1,  -- Available
+     '1.0',
+     1);
+
+INSERT INTO games (description_game, image, name, price, release_date, status, version, game_type)
+VALUES
+    ('Fight to survive in this strategic shooter game with intense battles and tactical gameplay.',
+     'predecessor.jpeg',
+     'Predecessor',
+     0,  -- Free
+     '2024-11-10',
+     1,  -- Available
+     '1.0',
+     7);
+
+INSERT INTO games (description_game, image, name, price, release_date, status, version, game_type)
+VALUES
+    ('Engage in mythological battles with gods and mythical creatures in this action-packed MOBA.',
+     'SMITE.jpeg',
+     'SMITE',
+     0,  -- Free
+     '2024-12-05',
+     1,  -- Available
+     '1.0',
+     15);
+
+INSERT INTO games (description_game, image, name, price, release_date, status, version, game_type)
+VALUES
+    ('Explore new worlds and engage in strategic space battles in this sci-fi MMO.',
+     'StarTrekOnline.jpeg',
+     'Star Trek Online',
+     0,  -- Free
+     '2024-09-30',
+     1,  -- Available
+     '1.0',
+     13);
+
+INSERT INTO games (description_game, image, name, price, release_date, status, version, game_type)
+VALUES
+    ('Experience life simulation with detailed character customization and interactive environments.',
+     'TheSims4.jpeg',
+     'The Sims 4',
+     0,  -- Free
+     '2024-10-15',
+     1,  -- Available
+     '1.0',
+     14);
+
+INSERT INTO games (description_game, image, name, price, release_date, status, version, game_type)
+VALUES
+    ('Engage in naval battles with advanced ships and tactics in this exciting naval warfare game.',
+     'warships.jpeg',
+     'Warships',
+     0,  -- Free
+     '2024-11-01',
+     1,  -- Available
+     '1.0',
+     1);
+
+INSERT INTO games (description_game, image, name, price, release_date, status, version, game_type)
+VALUES
+    ('Embark on a mystical journey in a visually stunning world with intricate gameplay and deep storylines in this adventure game.',
+     'Shangri-la.jpeg',
+     'Shangri-La',
+     0,  -- Free
+     '2024-11-20',
+     1,  -- Available
+     '1.0',
+     2);
+
+INSERT INTO games (description_game, image, name, price, release_date, status, version, game_type)
+VALUES
+    ('Enjoy an exciting and unique experience with this engaging multiplayer game from EGS.',
+     'RoCo_EGS.jpeg',
+     'RoCo EGS',
+     0,  -- Free
+     '2024-12-01',
+     1,  -- Available
+     '1.0',
+     1);
+
+INSERT INTO games (description_game, image, name, price, release_date, status, version, game_type)
+VALUES
+    ('Race through detailed tracks and customize your car in this high-octane racing simulator.',
+     'rennsport.jpeg',
+     'Rennsport',
+     0,  -- Free
+     '2024-10-15',
+     1,  -- Available
+     '1.0',
+     2);
+
+INSERT INTO games (description_game, image, name, price, release_date, status, version, game_type)
+VALUES
+    ('Join epic battles and team-based gameplay in this popular game from EGS with a variety of heroes and maps.',
+     'Paladins_EGS.jpeg',
+     'Paladins EGS',
+     0,  -- Free
+     '2024-11-10',
+     1,  -- Available
+     '1.0',
+     7);
+
+INSERT INTO games (description_game, image, name, price, release_date, status, version, game_type)
+VALUES
+    ('Explore the rich fantasy world of Neverwinter, with epic dungeons and a variety of quests in this MMORPG.',
+     'Neverwinter.jpeg',
+     'Neverwinter',
+     0,  -- Free
+     '2024-09-30',
+     1,  -- Available
+     '1.0',
+     13);
+
+INSERT INTO games (description_game, image, name, price, release_date, status, version, game_type)
+VALUES
+    ('Enter a whimsical world with various pets and unique gameplay mechanics in this charming game.',
+     'my-pet-hooligan.jpeg',
+     'My Pet Hooligan',
+     0,  -- Free
+     '2024-12-05',
+     1,  -- Available
+     '1.0',
+     14);
+
+INSERT INTO games (description_game, image, name, price, release_date, status, version, game_type)
+VALUES
+    ('Embark on exciting quests and battle powerful enemies in this classic action RPG with a nostalgic feel.',
+     'grandchase.jpeg',
+     'Grand Chase',
+     0,  -- Free
+     '2024-10-25',
+     1,  -- Available
+     '1.0',
+     13);
+
+INSERT INTO games (description_game, image, name, price, release_date, status, version, game_type)
+VALUES
+    ('Embark on a cooperative adventure with up to 33 players in this immersive multiplayer experience.',
+     '33-immortals.jpeg',
+     '33 Immortals',
+     0,  -- Free
+     '2024-12-01',
+     0,  -- Coming Soon
+     '1.0',
+     1);
+
+INSERT INTO games (description_game, image, name, price, release_date, status, version, game_type)
+VALUES
+    ('Dive into a dynamic world with complex mechanics and stunning graphics in this epic adventure game.',
+     'chrono-odyssey.jpeg',
+     'Chrono Odyssey',
+     0,  -- Free
+     '2024-10-15',
+     0,  -- Coming Soon
+     '1.0',
+     13);
+
+INSERT INTO games (description_game, image, name, price, release_date, status, version, game_type)
+VALUES
+    ('Survive against terrifying creatures in this open-world survival game with a focus on intense combat.',
+     'dying-light-the-beast.jpeg',
+     'Dying Light: The Beast',
+     0,  -- Free
+     '2024-11-05',
+     0,  -- Coming Soon
+     '1.0',
+     7);
+
+INSERT INTO games (description_game, image, name, price, release_date, status, version, game_type)
+VALUES
+    ('Experience a unique blend of action and strategy in this title from Outside Game Studio.',
+     'EGS_BinarySmoke_OutsideGameStudio.jpeg',
+     'Binary Smoke',
+     0,  -- Free
+     '2024-11-20',
+     0,  -- Coming Soon
+     '1.0',
+     1);
+
+INSERT INTO games (description_game, image, name, price, release_date, status, version, game_type)
+VALUES
+    ('Enjoy high-octane racing with exotic cars in this exciting sequel by Lany Games Inc.',
+     'EGS_ExoticCarsVI_LanyGamesInc_S2.jpeg',
+     'Exotic Cars VI',
+     0,  -- Free
+     '2024-12-01',
+     0,  -- Coming Soon
+     '1.0',
+     2);
+
+INSERT INTO games (description_game, image, name, price, release_date, status, version, game_type)
+VALUES
+    ('Manage a city in a harsh, frozen world with challenging survival mechanics in this sequel from 11 bit studios.',
+     'EGS_Frostpunk2.jpeg',
+     'Frostpunk 2',
+     0,  -- Free
+     '2024-10-25',
+     0,  -- Coming Soon
+     '1.0',
+     14);
+
+INSERT INTO games (description_game, image, name, price, release_date, status, version, game_type)
+VALUES
+    ('Navigate a world of tiny creatures with intricate gameplay in this imaginative game from Cubit Studios.',
+     'EGS_Infinitesimals_CubitStudios.jpeg',
+     'Infinitesimals',
+     0,  -- Free
+     '2024-11-10',
+     0,  -- Coming Soon
+     '1.0',
+     13);
+
+INSERT INTO games (description_game, image, name, price, release_date, status, version, game_type)
+VALUES
+    ('Join the fight against a toxic menace with tactical gameplay in this action-packed shooter by Saber Interactive.',
+     'EGS_JohnCarpentersToxicCommando_SaberInteractive.jpeg',
+     'John Carpenter\'s Toxic Commando',
+     0,  -- Free
+     '2024-12-05',
+     0,  -- Coming Soon
+     '1.0',
+     1);
+
+INSERT INTO games (description_game, image, name, price, release_date, status, version, game_type)
+VALUES
+    ('Immerse yourself in a dystopian world with retro-futuristic aesthetics in this game by Sad Cat Studios.',
+     'EGS_REPLACED_SadCatStudios_S2.jpeg',
+     'REPLACED',
+     0,  -- Free
+     '2024-10-05',
+     0,  -- Coming Soon
+     '1.0',
+     13);
+
+INSERT INTO games (description_game, image, name, price, release_date, status, version, game_type)
+VALUES
+    ('Uncover dark secrets and navigate a gripping narrative in this sequel by Telltale Games.',
+     'EGS_TheWolfAmongUs2.jpeg',
+     'The Wolf Among Us 2',
+     0,  -- Free
+     '2024-11-15',
+     0,  -- Coming Soon
+     '1.0',
+     13);
+
+INSERT INTO games (description_game, image, name, price, release_date, status, version, game_type)
+VALUES
+    ('Build your empire in a detailed simulation of Japanese crime organizations in this new title.',
+     'EGS_YakuzaEmpire.jpeg',
+     'Yakuza Empire',
+     0,  -- Free
+     '2024-12-01',
+     0,  -- Coming Soon
+     '1.0',
+     14);
+
+INSERT INTO games (description_game, image, name, price, release_date, status, version, game_type)
+VALUES
+    ('Explore various product offers in this engaging marketplace simulation.',
+     'EPIC_ProductOffer.jpeg',
+     'Product Offer',
+     0,  -- Free
+     '2024-10-20',
+     0,  -- Coming Soon
+     '1.0',
+     14);
+
+INSERT INTO games (description_game, image, name, price, release_date, status, version, game_type)
+VALUES
+    ('Race against time and opponents in this exciting new racing game.',
+     'exogp.jpeg',
+     'ExoGP',
+     0,  -- Free
+     '2024-11-01',
+     0,  -- Coming Soon
+     '1.0',
+     2);
+
+INSERT INTO games (description_game, image, name, price, release_date, status, version, game_type)
+VALUES
+    ('Master the art of drifting with Japanese cars in this high-speed racing game.',
+     'japanese-drift-mastter.jpeg',
+     'Japanese Drift Master',
+     0,  -- Free
+     '2024-12-15',
+     0,  -- Coming Soon
+     '1.0',
+     2);
+
+INSERT INTO games (description_game, image, name, price, release_date, status, version, game_type)
+VALUES
+    ('Explore a colorful world with unique creatures and gameplay in this whimsical title.',
+     'kokodi.jpeg',
+     'Kokodi',
+     0,  -- Free
+     '2024-11-10',
+     0,  -- Coming Soon
+     '1.0',
+     13);
+
+INSERT INTO games (description_game, image, name, price, release_date, status, version, game_type)
+VALUES
+    ('Survive and thrive in a harsh world with unique mechanics in this new indie game.',
+     'lowlife-forms.jpeg',
+     'Lowlife Forms',
+     0,  -- Free
+     '2024-10-30',
+     0,  -- Coming Soon
+     '1.0',
+     13);
+
+INSERT INTO games (description_game, image, name, price, release_date, status, version, game_type)
+VALUES
+    ('Battle rivals in a universe of superheroes and villains in this action-packed game.',
+     'marvel-rivals.jpeg',
+     'Marvel Rivals',
+     0,  -- Free
+     '2024-12-10',
+     0,  -- Coming Soon
+     '1.0',
+     2);
+
+INSERT INTO games (description_game, image, name, price, release_date, status, version, game_type)
+VALUES
+    ('Save the day with adorable heroes in this vibrant and fun game.',
+     'nyan-heroes.jpeg',
+     'Nyan Heroes',
+     0,  -- Free
+     '2024-11-25',
+     0,  -- Coming Soon
+     '1.0',
+     2);
+
+INSERT INTO games (description_game, image, name, price, release_date, status, version, game_type)
+VALUES
+    ('Design and manage your own theme park with creative rides and attractions in this simulation game.',
+     'planet-coaster.jpeg',
+     'Planet Coaster',
+     0,  -- Free
+     '2024-10-15',
+     0,  -- Coming Soon
+     '1.0',
+     14);
+
+INSERT INTO games (description_game, image, name, price, release_date, status, version, game_type)
+VALUES
+    ('Experience a magical world with deep lore and captivating gameplay in this adventure title.',
+     'the-kiraverse.jpeg',
+     'The Kiraverse',
+     0,  -- Free
+     '2024-11-30',
+     0,  -- Coming Soon
+     '1.0',
+     2);
+
+INSERT INTO games (description_game, image, name, price, release_date, status, version, game_type)
+VALUES
+    ('Explore a dynamic and evolving world in this vibrant and immersive game.',
+     'wilder-world.jpeg',
+     'Wilder World',
+     0,  -- Free
+     '2024-12-20',
+     0,  -- Coming Soon
+     '1.0',
+     13);
 
 
 
