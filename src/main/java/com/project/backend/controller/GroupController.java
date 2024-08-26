@@ -92,64 +92,20 @@ public ResponseEntity<Integer> getNewBlogsToday(@PathVariable Long groupId) {
 public ResponseEntity<GroupDto> createGroup(
         @RequestParam("name") String name,
         @RequestParam("status") boolean status,
-        @RequestParam("image") MultipartFile image,
         @RequestParam("createDate") String createDate) {
 
     GroupDto groupDto = new GroupDto();
     groupDto.setName(name);
     groupDto.setStatus(status);
     groupDto.setCreateDate(LocalDate.parse(createDate));
-
-    if (image != null && !image.isEmpty()) {
-        try {
-            String imageName = UUID.randomUUID().toString() + "_" + image.getOriginalFilename();
-            String imagePath = "C:/Users/Admin/Desktop/UpdateCode/my-app/public/image/games/" + imageName;
-            File destFile = new File(imagePath);
-            image.transferTo(destFile);
-            groupDto.setImage(imageName);
-        } catch (IOException e) {
-            return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
-        }
-    }
-
-
     // Lưu group
     GroupDto savedGroup = groupservice.creategroup(groupDto);
     return new ResponseEntity<>(savedGroup, HttpStatus.CREATED);
 }
 
 
-@CrossOrigin(origins = "http://localhost:3000")
-@PostMapping ("/{groupId}/image")
-public ResponseEntity<String> uploadAvatar (@PathVariable Long groupId,  @RequestParam ("image") MultipartFile file) {
-    try
-    {
-        groupservice.uploadAvatar(groupId, file);
-        return ResponseEntity.ok("Avatar uploaded successfully");
-    } catch (IOException e)
-    {
-        return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("Failed to upload avatar");
-    } catch (RuntimeException e)
-    {
-        return ResponseEntity.status(HttpStatus.NOT_FOUND).body("User not found");
-    }
-}
 
 
-
-@CrossOrigin(origins = "http://localhost:3000")
-@GetMapping ("/{groupId}/image")
-public ResponseEntity<byte[]> getAvatar (@PathVariable Long groupId) throws IOException {
-    try
-    {
-        byte[] avatar = groupservice.getAvatar(groupId);
-        return ResponseEntity.ok().contentType(MediaType.IMAGE_JPEG) 
-                .body(avatar);
-    } catch (RuntimeException e)
-    {
-        return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
-    }
-}
 
     
     
@@ -204,7 +160,7 @@ public ResponseEntity<byte[]> getAvatar (@PathVariable Long groupId) throws IOEx
 //    return ResponseEntity.ok(updatedGroup);
 //}
 
-@PostMapping("joinGroup")
+@PostMapping("/joinGroup")
 public ResponseEntity<String> accountJoinGroup(@RequestBody JoinGroupDto joinGroupDto){
 	groupservice.AccountJoinGroup(joinGroupDto);
 	return ResponseEntity.ok("Join Successfully");
@@ -223,7 +179,7 @@ public ResponseEntity<Boolean> isUserJoined(@PathVariable Long groupId, @Request
     return ResponseEntity.ok(isUserJoined);	
 }
 
-@GetMapping("{id}")
+@GetMapping("/{id}")
 public ResponseEntity<GroupDto> getGroupById(@PathVariable("id") Long groupId){
     GroupDto groupDto = groupservice.getgroupById(groupId);
     return ResponseEntity.ok(groupDto);
@@ -257,7 +213,7 @@ public ResponseEntity<List<Group>> findByName(@RequestParam String name) {
 //}
 
 
-@GetMapping("{id}/details")
+@GetMapping("/{id}/details")
 public Map<String, Object> getGroupDetails(@PathVariable Long id) {
     List<Long> memberIds = groupservice.findAccountIdsByGroupId(id);
     Map<String, Object> response = new HashMap<>();
@@ -292,12 +248,12 @@ public ResponseEntity<List<GroupDto>> getAll(){
     return ResponseEntity.ok(group);
 }
 
-@PutMapping("{id}")
+@PutMapping("/{id}")
 public ResponseEntity<GroupDto> updateGroup(@PathVariable("id") Long groupId, @RequestBody GroupDto updatedGroup){
     GroupDto group = groupservice.Update(groupId, updatedGroup);
     return ResponseEntity.ok(group);
 }
-@DeleteMapping("{id}")
+@DeleteMapping("/{id}")
 public ResponseEntity<String> deleteGroup(@PathVariable("id") Long groupId){
     groupservice.deleteGroup(groupId);
     return ResponseEntity.ok("Group deleted Successfully");
