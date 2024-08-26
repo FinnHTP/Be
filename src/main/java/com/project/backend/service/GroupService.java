@@ -28,7 +28,7 @@ boolean  isUserJoinedGroup(Long groupId, Long accountId);
 ResponseEntity<?> leaveGroup(JoinGroupDto joinGroupDto);
 List<GroupAccountDto> getAll2(Long groupId ,Long accountId );
 void uploadAvatar (Long groupId, MultipartFile file) throws IOException;
-byte[] getAvatar (Long groupId);
+byte[] getAvatar (Long groupId) throws IOException;
 List<Integer> findAccountDetails(Long groupId);
 
 List<Group> findByName(String name);
