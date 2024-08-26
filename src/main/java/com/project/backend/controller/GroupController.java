@@ -92,26 +92,12 @@ public ResponseEntity<Integer> getNewBlogsToday(@PathVariable Long groupId) {
 public ResponseEntity<GroupDto> createGroup(
         @RequestParam("name") String name,
         @RequestParam("status") boolean status,
-        @RequestParam("image") MultipartFile image,
         @RequestParam("createDate") String createDate) {
 
     GroupDto groupDto = new GroupDto();
     groupDto.setName(name);
     groupDto.setStatus(status);
     groupDto.setCreateDate(LocalDate.parse(createDate));
-
-    if (image != null && !image.isEmpty()) {
-        try {
-            String imageName = UUID.randomUUID().toString() + "_" + image.getOriginalFilename();
-            String imagePath = "C:/Users/Admin/Desktop/UpdateCode/my-app/public/image/games/" + imageName;
-            File destFile = new File(imagePath);
-            image.transferTo(destFile);
-        } catch (IOException e) {
-            return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
-        }
-    }
-
-
     // Lưu group
     GroupDto savedGroup = groupservice.creategroup(groupDto);
     return new ResponseEntity<>(savedGroup, HttpStatus.CREATED);
