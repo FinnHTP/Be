@@ -204,7 +204,7 @@ public ResponseEntity<byte[]> getAvatar (@PathVariable Long groupId) throws IOEx
 //    return ResponseEntity.ok(updatedGroup);
 //}
 
-@PostMapping("joinGroup")
+@PostMapping("/joinGroup")
 public ResponseEntity<String> accountJoinGroup(@RequestBody JoinGroupDto joinGroupDto){
 	groupservice.AccountJoinGroup(joinGroupDto);
 	return ResponseEntity.ok("Join Successfully");
@@ -223,7 +223,7 @@ public ResponseEntity<Boolean> isUserJoined(@PathVariable Long groupId, @Request
     return ResponseEntity.ok(isUserJoined);	
 }
 
-@GetMapping("{id}")
+@GetMapping("/{id}")
 public ResponseEntity<GroupDto> getGroupById(@PathVariable("id") Long groupId){
     GroupDto groupDto = groupservice.getgroupById(groupId);
     return ResponseEntity.ok(groupDto);
@@ -257,7 +257,7 @@ public ResponseEntity<List<Group>> findByName(@RequestParam String name) {
 //}
 
 
-@GetMapping("{id}/details")
+@GetMapping("/{id}/details")
 public Map<String, Object> getGroupDetails(@PathVariable Long id) {
     List<Long> memberIds = groupservice.findAccountIdsByGroupId(id);
     Map<String, Object> response = new HashMap<>();
@@ -292,12 +292,12 @@ public ResponseEntity<List<GroupDto>> getAll(){
     return ResponseEntity.ok(group);
 }
 
-@PutMapping("{id}")
+@PutMapping("/{id}")
 public ResponseEntity<GroupDto> updateGroup(@PathVariable("id") Long groupId, @RequestBody GroupDto updatedGroup){
     GroupDto group = groupservice.Update(groupId, updatedGroup);
     return ResponseEntity.ok(group);
 }
-@DeleteMapping("{id}")
+@DeleteMapping("/{id}")
 public ResponseEntity<String> deleteGroup(@PathVariable("id") Long groupId){
     groupservice.deleteGroup(groupId);
     return ResponseEntity.ok("Group deleted Successfully");
