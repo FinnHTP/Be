@@ -27,7 +27,7 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 @Entity
-@Table(name = "`groups`")
+@Table(name = "groups")
 public class Group {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -36,7 +36,7 @@ public class Group {
     private String name;
     @Lob
     @Column(name = "image")
-    private byte[] image;
+    private String image;
     @Column(name="status")
     private boolean status;
     @Column(name="createDate")

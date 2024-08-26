@@ -14,7 +14,7 @@ import lombok.NoArgsConstructor;
 public class GroupDto {
 	    private Long id;
 	    private String name;
-	    private byte[] image;
+	    private String image;
 	    private boolean status;
 	    private LocalDate createDate;
 }

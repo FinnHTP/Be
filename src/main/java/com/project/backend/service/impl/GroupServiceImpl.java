@@ -6,6 +6,7 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Optional;
 import java.util.Set;
+import java.util.UUID;
 import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -108,6 +109,7 @@ public void AccountJoinGroup(JoinGroupDto joinGroupDto) {
         System.out.println("Existing group: " + group.getName());
         if (group.getId().equals(groupById.getId())) {
             groupExists = true;
+            
             break;
         }
     }
@@ -193,31 +195,45 @@ public List<Group> findByName(String name) {
     return ls;
 }
 
+
 @Override
-public void uploadAvatar (Long id, MultipartFile file) throws IOException {
+public void uploadAvatar(Long id, MultipartFile file) throws IOException {
     Optional<Group> optionalGroup = grouprepo.findById(id);
-    if (optionalGroup.isPresent())
-    {
+    if (optionalGroup.isPresent()) {
         Group group = optionalGroup.get();
-        group.setImage(file.getBytes());
+        
+        // Tạo tên file với UUID để tránh trùng lặp
+        String imageName = UUID.randomUUID().toString() + "_" + file.getOriginalFilename();
+        String imagePath = "C:/Users/Admin/Desktop/UpdateCode/my-app/public/image/games/" + imageName;
+        
+        // Lưu file vào thư mục
+        File destFile = new File(imagePath);
+        file.transferTo(destFile);
+        
+        // Lưu tên file vào cơ sở dữ liệu
+        group.setImage(imageName);
         grouprepo.save(group);
-    } else
-    {
-        throw new RuntimeException("User not found");
+    } else {
+        throw new RuntimeException("Group not found");
     }
 }
 
+
 @Override
-public byte[] getAvatar (Long id) {
+public byte[] getAvatar(Long id) throws IOException {
     Optional<Group> optionalGroup = grouprepo.findById(id);
-    if (optionalGroup.isPresent() && optionalGroup.get().getImage() != null)
-    {
-        return optionalGroup.get().getImage();
-    } else
-    {
+    if (optionalGroup.isPresent() && optionalGroup.get().getImage() != null) {
+        String imageName = optionalGroup.get().getImage();
+        String imagePath = "C:/Users/Admin/Desktop/UpdateCode/my-app/public/image/groups/" + imageName;
+        
+        // Đọc file từ thư mục và trả về dưới dạng byte[]
+        Path path = Paths.get(imagePath);
+        return Files.readAllBytes(path);
+    } else {
         throw new RuntimeException("Avatar not found");
     }
 }
+
 private static final String IMAGE_DIRECTORY = "C:/images/groups/";
 @Override
 public void saveGroupImage(Long groupId, MultipartFile image) throws IOException {

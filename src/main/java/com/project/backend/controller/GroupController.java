@@ -10,6 +10,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
+import java.util.UUID;
 
 import org.eclipse.angus.mail.iap.Response;
 import org.springframework.http.HttpStatus;
@@ -99,12 +100,18 @@ public ResponseEntity<GroupDto> createGroup(
     groupDto.setStatus(status);
     groupDto.setCreateDate(LocalDate.parse(createDate));
 
-    try {
-        // Chuyển đổi MultipartFile sang byte[]
-        groupDto.setImage(image.getBytes());
-    } catch (IOException e) {
-        return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+    if (image != null && !image.isEmpty()) {
+        try {
+            String imageName = UUID.randomUUID().toString() + "_" + image.getOriginalFilename();
+            String imagePath = "C:/Users/Admin/Desktop/UpdateCode/my-app/public/image/games/" + imageName;
+            File destFile = new File(imagePath);
+            image.transferTo(destFile);
+            groupDto.setImage(imageName);
+        } catch (IOException e) {
+            return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+        }
     }
+
 
     // Lưu group
     GroupDto savedGroup = groupservice.creategroup(groupDto);
@@ -132,7 +139,7 @@ public ResponseEntity<String> uploadAvatar (@PathVariable Long groupId,  @Reques
 
 @CrossOrigin(origins = "http://localhost:3000")
 @GetMapping ("/{groupId}/image")
-public ResponseEntity<byte[]> getAvatar (@PathVariable Long groupId) {
+public ResponseEntity<byte[]> getAvatar (@PathVariable Long groupId) throws IOException {
     try
     {
         byte[] avatar = groupservice.getAvatar(groupId);
