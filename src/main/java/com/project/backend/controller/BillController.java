@@ -44,6 +44,7 @@ import com.project.backend.service.UserService;
 import java.io.IOException;
 import java.time.LocalDate;
 
+@CrossOrigin("*")
 @RestController
 public class BillController {
 	@Autowired
