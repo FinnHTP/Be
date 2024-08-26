@@ -106,7 +106,6 @@ public ResponseEntity<GroupDto> createGroup(
             String imagePath = "C:/Users/Admin/Desktop/UpdateCode/my-app/public/image/games/" + imageName;
             File destFile = new File(imagePath);
             image.transferTo(destFile);
-            groupDto.setImage(imageName);
         } catch (IOException e) {
             return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
         }
@@ -119,37 +118,8 @@ public ResponseEntity<GroupDto> createGroup(
 }
 
 
-@CrossOrigin(origins = "http://localhost:3000")
-@PostMapping ("/{groupId}/image")
-public ResponseEntity<String> uploadAvatar (@PathVariable Long groupId,  @RequestParam ("image") MultipartFile file) {
-    try
-    {
-        groupservice.uploadAvatar(groupId, file);
-        return ResponseEntity.ok("Avatar uploaded successfully");
-    } catch (IOException e)
-    {
-        return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("Failed to upload avatar");
-    } catch (RuntimeException e)
-    {
-        return ResponseEntity.status(HttpStatus.NOT_FOUND).body("User not found");
-    }
-}
 
 
-
-@CrossOrigin(origins = "http://localhost:3000")
-@GetMapping ("/{groupId}/image")
-public ResponseEntity<byte[]> getAvatar (@PathVariable Long groupId) throws IOException {
-    try
-    {
-        byte[] avatar = groupservice.getAvatar(groupId);
-        return ResponseEntity.ok().contentType(MediaType.IMAGE_JPEG) 
-                .body(avatar);
-    } catch (RuntimeException e)
-    {
-        return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
-    }
-}
 
     
     

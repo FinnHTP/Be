@@ -195,62 +195,6 @@ public List<Group> findByName(String name) {
     return ls;
 }
 
-
-@Override
-public void uploadAvatar(Long id, MultipartFile file) throws IOException {
-    Optional<Group> optionalGroup = grouprepo.findById(id);
-    if (optionalGroup.isPresent()) {
-        Group group = optionalGroup.get();
-        
-        // Tạo tên file với UUID để tránh trùng lặp
-        String imageName = UUID.randomUUID().toString() + "_" + file.getOriginalFilename();
-        String imagePath = "C:/Users/Admin/Desktop/UpdateCode/my-app/public/image/games/" + imageName;
-        
-        // Lưu file vào thư mục
-        File destFile = new File(imagePath);
-        file.transferTo(destFile);
-        
-        // Lưu tên file vào cơ sở dữ liệu
-        group.setImage(imageName);
-        grouprepo.save(group);
-    } else {
-        throw new RuntimeException("Group not found");
-    }
-}
-
-
-@Override
-public byte[] getAvatar(Long id) throws IOException {
-    Optional<Group> optionalGroup = grouprepo.findById(id);
-    if (optionalGroup.isPresent() && optionalGroup.get().getImage() != null) {
-        String imageName = optionalGroup.get().getImage();
-        String imagePath = "C:/Users/Admin/Desktop/UpdateCode/my-app/public/image/groups/" + imageName;
-        
-        // Đọc file từ thư mục và trả về dưới dạng byte[]
-        Path path = Paths.get(imagePath);
-        return Files.readAllBytes(path);
-    } else {
-        throw new RuntimeException("Avatar not found");
-    }
-}
-
-private static final String IMAGE_DIRECTORY = "C:/images/groups/";
-@Override
-public void saveGroupImage(Long groupId, MultipartFile image) throws IOException {
-    // Tạo thư mục nếu chưa tồn tại
-    File directory = new File(IMAGE_DIRECTORY);
-    if (!directory.exists()) {
-        directory.mkdirs();
-    }
-
-    // Lưu hình ảnh với tên file là ID của group
-    String imagePath = IMAGE_DIRECTORY + groupId + "_" + image.getOriginalFilename();
-    Path path = Paths.get(imagePath);
-    Files.write(path, image.getBytes());
-}
-
-
-
 @Override
 public List<Long> findAccountIdsByGroupId(Long groupId) {
 	
@@ -266,29 +210,4 @@ public List<Long> findAccountIdsByGroupId(Long groupId) {
 
 
 
-//@Override
-//public void uploadAvatar (Long id, MultipartFile file) throws IOException {
-//    Optional<User> optionalUser = userRepository.findById(id);
-//    if (optionalUser.isPresent())
-//    {
-//        User user = optionalUser.get();
-//        user.setAvatar(file.getBytes());
-//        userRepository.save(user);
-//    } else
-//    {
-//        throw new RuntimeException("User not found");
-//    }
-//}
-//
-//@Override
-//public byte[] getAvatar (Long id) {
-//    Optional<User> optionalUser = userRepository.findById(id);
-//    if (optionalUser.isPresent() && optionalUser.get().getAvatar() != null)
-//    {
-//        return optionalUser.get().getAvatar();
-//    } else
-//    {
-//        throw new RuntimeException("Avatar not found");
-//    }
-//}
 }
