@@ -6,12 +6,21 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.project.backend.dto.BlogDto;
+import com.project.backend.dto.CommentBlogDto;
+import com.project.backend.dto.CommentDto;
 import com.project.backend.entity.Blog;
+import com.project.backend.entity.CommentBlog;
+import com.project.backend.entity.Group;
 import com.project.backend.service.BlogService;
+import com.project.backend.service.CommentBlogService;
+import com.project.backend.service.CommentService;
+
 import io.swagger.v3.oas.annotations.security.SecurityRequirement;
 import lombok.AllArgsConstructor;
 
@@ -23,13 +32,31 @@ import lombok.AllArgsConstructor;
 public class BlogController {
 
 	private BlogService blogService;
+	private CommentBlogService commentService;
+	//GetAll
+//	 @GetMapping
+//	    public ResponseEntity<List<BlogDto>> getAll(){
+//	        List<BlogDto> blogs = blogService.getAll();
+//	        return ResponseEntity.ok(blogs);
+//	    }
 	
 	
-	 @GetMapping
-	    public ResponseEntity<List<BlogDto>> getAll(){
-	        List<BlogDto> blogs = blogService.getAll();
-	        return ResponseEntity.ok(blogs);
-	    }
+	//GetBlogInGroupPrivate
+	 @GetMapping("/public")
+    public ResponseEntity<List<BlogDto>> getAll(){
+        List<BlogDto> blogs = blogService.findBlogsByGroupStatus();
+        return ResponseEntity.ok(blogs);
+    }
+	
+	 
+	 @GetMapping("/commentblog/{blogId}")
+	 public ResponseEntity<List<CommentBlogDto>> getCommentsByBlog(@PathVariable Long blogId) 
+	 {
+//	     List<CommentBlogDto> comments = commentService.findCommentsByBlogId(blogId);
+//	     return ResponseEntity.ok(comments);
+		 return null;
+	 }
+
 	 
 	 @GetMapping("{id}")
 	    public ResponseEntity<BlogDto> getBlogById(@PathVariable("id") Long blogId){
@@ -55,5 +82,26 @@ public class BlogController {
 	        return blogService.findBlogInGroup(groupId);
 	    }
 	 
+	   
+	   @CrossOrigin(origins = "http://localhost:3000")
+	   @PostMapping("/group/{groupId}")
+	   public ResponseEntity<BlogDto> createBlog(@PathVariable Long groupId, @RequestBody BlogDto blogDto) {
+	       Group group = new Group();  
+	       group.setId(groupId);       
+	       blogDto.setGroup(group);   
+	       // Giai quyet cai groupId bang cach nay
+	       BlogDto createdBlog = blogService.createBlog(blogDto); 
+	       return ResponseEntity.ok(createdBlog);
+	   }
+
+	   
+//	   @CrossOrigin(origins = "http://localhost:3000")
+//	   @PostMapping("/group/{groupId}")
+//	   public ResponseEntity<BlogDto> createBlog(@PathVariable Long groupId, @RequestBody BlogDto blogDto) {
+//	       BlogDto createdBlog = blogService.createBlog(blogDto, groupId); // Truyền groupId vào service
+//	       return ResponseEntity.ok(createdBlog);
+//	   }
+
+	   
 	 
 }

@@ -28,8 +28,11 @@ public interface GroupRepository extends JpaRepository<Group, Long>{
 	  
 //	 @Query("SELECT ga.account.id FROM GroupAccount ga WHERE ga.group.id = :groupId")
 //	    List<Long> findAccountIdsByGroupId(Long groupId);
-//	
-//	
+	
+	  @Query(value = "SELECT account_id FROM group_account WHERE group_id = :groupId", nativeQuery = true)
+	    List<Long> findAccountIdsByGroupId(@Param("groupId") Long groupId);
+
+
 //	   @Query("SELECT a.id FROM Account a WHERE a.group.namegroup = :groupName")
 //	    List<Long> findAccountIdsByGroupName(String groupName);
 	
@@ -48,7 +51,11 @@ public interface GroupRepository extends JpaRepository<Group, Long>{
              "WHERE ga.group_id = :groupId", nativeQuery = true)
 List<Integer> findAccountDetails(@Param("groupId") Long groupId);
 	 
-	  @Query(value = "SELECT * FROM groups WHERE name LIKE :name", nativeQuery = true)
+	  @Query(value = "SELECT * FROM groups WHERE name LIKE %:name%", nativeQuery = true)
 	    List<Group> findByName(@Param("name") String name);
+	  
+	  
+	  @Query("SELECT COUNT(b) FROM Blog b WHERE b.group.id = :groupId AND b.createDate >= CURRENT_DATE")
+	    int countNewBlogsTodayByGroupId(@Param("groupId") Long groupId);
 
 }

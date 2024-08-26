@@ -16,4 +16,6 @@ public interface BlogService {
 	  List<BlogDto> findBlogInGroup(Long groupId);
 	  List<Blog> findBlogByAccount(Long accountId);
 	  List<Blog> findBlogByGame(Long gameId);
+//	  List<Blog> getBloginPrivateGroup(Long groupId);
+	  List<BlogDto> findBlogsByGroupStatus();
 }

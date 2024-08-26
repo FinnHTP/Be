@@ -28,13 +28,17 @@ boolean  isUserJoinedGroup(Long groupId, Long accountId);
 ResponseEntity<?> leaveGroup(JoinGroupDto joinGroupDto);
 List<GroupAccountDto> getAll2(Long groupId ,Long accountId );
 void uploadAvatar (Long groupId, MultipartFile file) throws IOException;
-byte[] getAvatar (Long groupId);
+byte[] getAvatar (Long groupId) throws IOException;
 List<Integer> findAccountDetails(Long groupId);
 
 List<Group> findByName(String name);
 
 GroupDto creategroup(GroupDto Dto);
 void saveGroupImage(Long groupId, MultipartFile image) throws IOException;
+int countNewBlogsToday(Long groupId);
+
+
+
 
 //void uploadAvatar (Long id, MultipartFile file) throws IOException;
 //byte[] getAvatar (Long id);
@@ -42,7 +46,7 @@ void saveGroupImage(Long groupId, MultipartFile image) throws IOException;
 //void uploadAvatar (Long id, MultipartFile file) throws IOException;
 //byte[] getAvatar (Long id);
 
-//List<Long> findAccountIdsByGroupId(Long groupId);
+List<Long> findAccountIdsByGroupId(Long groupId);
 //
 //List<Long> findAccountIdsByGroupName(String groupName);
 

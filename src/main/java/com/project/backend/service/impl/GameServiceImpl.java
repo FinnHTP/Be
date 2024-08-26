@@ -55,6 +55,7 @@ public class GameServiceImpl implements GameService {
         game.setReleaseDate(updatedGameDto.getReleaseDate());
         game.setVersion(updatedGameDto.getVersion());
         game.setGameType(updatedGameDto.getGameType());
+        game.setImage(updatedGameDto.getImage());
         Game updatedGameObj = gameRepository.save(game);
         return GameMapper.mapToGameDto(updatedGameObj);
     }
@@ -83,6 +84,7 @@ public class GameServiceImpl implements GameService {
 		return null;
 	}
     
-    
+	
+	
 
 }
