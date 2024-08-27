@@ -26,7 +26,7 @@ public class SecurityConfiguration {
         http
                 .csrf(csrf -> csrf.disable())
 
-                .authorizeHttpRequests(authorize -> authorize.requestMatchers("/api/bill,/paypal/,/paypal/**,/api/games,/excel/*","/api/v1/auth/**","/api/password/**","/api/payment/**","/api/payment").permitAll()
+                .authorizeHttpRequests(authorize -> authorize.requestMatchers("/api/exportbill/**,/paypal/,/paypal/**,/api/games,/excel/*","/api/v1/auth/**","/api/password/**","/api/payment/**","/api/payment").permitAll()
  
                         .requestMatchers(
                                 "/api/v1/auth/**",
