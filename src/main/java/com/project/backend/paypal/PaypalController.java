@@ -39,8 +39,8 @@ public class PaypalController {
             @RequestParam("description") String description
     ) {
         try {
-            String cancelUrl = "https://websitegamemanagement.vercel.app/payment/cancel";
-            String successUrl = "https://websitegamemanagement.vercel.app/payment/success";
+            String cancelUrl = "https://websitegamemanagement.vercel.app/payment/404";
+            String successUrl = "https://websitegamemanagement.vercel.app/payment/profile";
             Payment payment = paypalService.createPayment(
                     Double.valueOf(amount),
                     currency,
